@@ -1,4 +1,7 @@
 class CatRentalRequestsController < ApplicationController
+
+  before_action :ensure_rental_owner, only: [:approve, :deny]
+
   def approve
     current_cat_rental_request.approve!
     redirect_to cat_url(current_cat)
@@ -39,5 +42,13 @@ class CatRentalRequestsController < ApplicationController
 
   def cat_rental_request_params
     params.require(:cat_rental_request).permit(:cat_id, :end_date, :start_date, :status)
+  end
+
+  def ensure_rental_owner
+    redirect_to cats_url(params[:id]) unless is_rental_owner?
+  end
+
+  def is_rental_owner?
+    current_user.cats.pluck(:id).include?(params[:id])
   end
 end

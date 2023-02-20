@@ -58,6 +58,7 @@ class User < ApplicationRecord
         inverse_of: :owner
     )
 
+
     private
 
     def generate_unique_session_token 

@@ -155,4 +155,7 @@ class CatRentalRequest < ApplicationRecord
     errors.add(:start_date, 'must come before end date')
     errors.add(:end_date, 'must come after start date')
   end
+
+  has_one :cat_owner, through: :cat, source: :owner
+
 end

@@ -46,7 +46,7 @@ class Cat < ApplicationRecord
 
   belongs_to(
     :owner,
-    foreign_key: :ownder_id, 
+    foreign_key: :owner_id, 
     primary_key: :id, 
     class_name: :User
   )
