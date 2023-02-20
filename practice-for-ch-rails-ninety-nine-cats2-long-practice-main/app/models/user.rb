@@ -50,6 +50,13 @@ class User < ApplicationRecord
 
     end
 
+    has_many(
+        :cats,
+        primary_key: :id, 
+        foreign_key: :owner_id, 
+        class_name: :Cat, 
+        inverse_of: :owner
+    )
 
     private
 

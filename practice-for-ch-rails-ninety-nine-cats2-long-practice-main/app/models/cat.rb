@@ -43,4 +43,12 @@ class Cat < ApplicationRecord
   def age
     time_ago_in_words(birth_date)
   end
+
+  belongs_to(
+    :owner,
+    foreign_key: :ownder_id, 
+    primary_key: :id, 
+    class_name: :User
+  )
+
 end
